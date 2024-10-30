@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health and Fitness Tracking Application</title>
+    <style>
+:root {
+  --primary-color: #3a7ca5;
+  --secondary-color: #81c3d7;
+  --text-color: #2c3e50;
+  --background-color: #f0f4f8;
+  --white: #ffffff;
+  --accent-color: rgb(6, 51, 70);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 2em;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+nav {
+  background-color: var(--secondary-color);
+  padding: 15px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.content {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+h3 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  font-size: 1.4em;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.class-diagram {
+  background-color: #e6eef4;
+  border: 1px solid #c0d6e4;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 0;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: var(--shadow);
+}
+
+th, td {
+  border: 1px solid #c0d6e4;
+  padding: 15px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+tr:nth-child(even) {
+  background-color: #e6eef4;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  nav a {
+    margin: 5px 0;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+.highlight {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+/* Initially hide all sections */
+.content section {
+            display: none;
+        }
+
+        /* Display the active section */
+        .content section.active {
+            display: block;
+        }
+    </style>
+
+<script>
+    // JavaScript function to toggle sections
+    function showPage(pageId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.content section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Show the selected section by adding 'active' class
+        const activeSection = document.getElementById(pageId);
+        if (activeSection) {
+            activeSection.classList.add('active');
+        }
+    }
+
+    // Show the "home" section by default on page load
+    window.addEventListener('load', () => {
+        showPage('home');
+    });
+</script>
+    
+</head>
+<body>
+
+<header>
+    <h1>Health and Fitness Tracking Application</h1>
+    <p><h4><center>CS5744 - Project 1</center></h4><p>
+</header>
+
+<!-- Navigation Bar -->
+<nav>
+    <a href="javascript:void(0)" onclick="showPage('home')"><b>Home</b></a>
+    <a href="javascript:void(0)" onclick="showPage('background')"><b>Background</b></a>
+    <a href="javascript:void(0)" onclick="showPage('use-cases')"><b>Use Cases</b></a>
+    <a href="javascript:void(0)" onclick="showPage('requirements')"><b>Requirements Summary</b></a>
+    <a href="javascript:void(0)" onclick="showPage('design')"><b>High-Level Design</b></a>
+    <a href="javascript:void(0)" onclick="showPage('rationale')"><b>Design Rationale</b></a>
+    <a href="javascript:void(0)" onclick="showPage('conclusion')"><b>Conclusion</b></a>
+</nav>
+
+
+<!-- Content Section -->
+<div class="content">
+    <!-- Home Page Content -->
+    <section id="home" class="active">
+        <h2 class="section-title">Project Overview</h2>
+        <p>Welcome to the Health and Fitness Tracking Application project! This system helps users track fitness goals, log workouts, and share progress within a community platform. This website presents the system's design, from the requirements to the high-level architecture and the rationale behind key design choices.</p>
+        
+        <h3>Team Members:</h3>
+        <ul>
+            <li>Sahil Sharma - <i>sahilsharma@vt.edu</i></li>
+            <li>Shail Shah - <i>shails@vt.edu</i></li>
+            <li>Ritwik Sood - <i>ritwiksood@vt.edu</i></li>
+            <li>Uma Sruthy Gajula - <i>gumasruthy@vt.edu</i></li>
+            <li>Udbhaav Mudgil - <i>umudgil@vt.edu</i></li>
+        </ul>
+    </section>
+    <section id = "background">
+    <h2>Background</h2>
+    <p>The Health and Fitness Tracking Application is a mobile system designed to assist users in tracking their fitness goals, workout routines, and nutritional intake, while fostering a community-driven platform to keep users motivated and engaged. With the rising demand for personalized fitness solutions, this system aims to offer users a centralized platform where they can log activities, monitor their progress through analytics, and share their journey with others.</p>
+
+    <p>The idea for this project originated from the team’s collective experiences with fitness tracking apps. While many such apps already exist in the market, our team wanted to address gaps in personalized progress tracking and community engagement. By leveraging our understanding of existing systems and new design challenges, we set out to build a comprehensive system focusing on scalability, security, and usability.</p>
+
+    <p>The system includes user authentication and profile creation, where each user can set personalized fitness goals—whether it's weight loss, muscle gain, or general wellness. Users can log workouts, specify exercises, durations, intensity levels, and input nutritional data such as calories and macronutrients. Progress tracking is visualized through detailed dashboards, offering insights based on activity and diet over time. Community features further encourage users to post achievements, interact with others, and participate in discussions.</p>
+
+    <p>Although the system is currently in the conceptual phase, it allows us to explore high-level design decisions, such as modularity and secure data handling, while experimenting with real-time feedback for fitness data. We aim to create a robust system architecture that supports future enhancements, from fitness APIs to advanced analytics.</p>
+    <img src="Header.png" alt="System Architecture" width="700" height="400" style="display: block; margin: auto;">
+</section>
+    <!-- Use Cases Section -->
+<section id="use-cases">
+    <h2 class="section-title">Use Cases</h2>
+
+    <h3>Intended Users</h3>
+    <p>The primary users of the Health and Fitness Tracking Application are individuals who want to monitor their fitness progress, track workout routines, log nutritional intake, and engage with a community for motivation. Secondary users may include fitness trainers or coaches who use the platform to track the progress of their clients and provide personalized feedback. The system aims to reduce the manual effort required by users to monitor their health, providing a centralized platform to automate tracking, analytics, and community interaction.</p>
+
+    <h3>Primary User: Fitness Enthusiast</h3>
+    <p>Users looking to maintain or improve their fitness are the primary audience for this application. These users log into the system, set fitness goals (e.g., weight loss, muscle gain), log workouts, track nutrition, and monitor progress using the insights generated by the system.</p>
+
+    <p>On a daily basis, users perform the following tasks:</p>
+    <ul>
+        <li>Login to the platform</li>
+        <li>Log daily workouts (exercise type, duration, intensity)</li>
+        <li>Log daily nutrition (meals, snacks, and calorie intake)</li>
+        <li>Check progress insights (graphs and reports on workout and nutrition trends)</li>
+        <li>Engage with the social platform (comment, like, and share workout results)</li>
+    </ul>
+    <p>This automation helps users focus more on achieving their fitness goals rather than manually calculating their daily progress. Through automatic reports and goal tracking, users can adjust their routines effectively to ensure continued success.</p>
+
+
+    <h3>Secondary User: Fitness Trainer</h3>
+    <p>Fitness trainers can use the platform to track their clients' progress, offer personalized feedback, and help clients stay on track with their goals. Trainers can monitor workout logs, assess nutrition data, and adjust fitness plans based on the data-driven insights the system provides.</p>
+
+    <p>Trainers can perform the following tasks:</p>
+    <ul>
+        <li>Create and manage profiles for each client</li>
+        <li>Review clients' workout history and nutrition logs</li>
+        <li>Generate progress reports and give personalized feedback</li>
+        <li>Interact with clients through the social platform</li>
+    </ul>
+    <p>With automated tracking and progress analysis, trainers save time, enabling them to focus on providing tailored fitness plans to their clients.</p>
+    <img src="Health and Fitness Use Case Diagram.png.jpg" alt="Use Case Diagram" width="700" height="800" style="display: block; margin: auto;">
+    <h3>System Interaction</h3>
+    <p>The system helps users by simplifying complex fitness tracking processes, automating the generation of personalized reports, and fostering community engagement. All users, whether individuals or trainers, have access to the platform’s core features of workout logging, nutrition tracking, and progress monitoring, reducing manual effort while enabling better tracking of fitness goals.</p>
+</section>
+
+    <section id="requirements">
+        <h2 class="section-title">Requirements Summary</h2>
+<p>This section outlines the functional and non-functional requirements for the Health and Fitness Tracking Application.</p>
+
+<h3>Functional Requirements</h3>
+<ul>
+    <li>R1: User authentication and profile management</li>
+    <li>R2: Logging workouts with details on exercise, duration, intensity</li>
+    <li>R3: Nutrition logging for calorie and macronutrient tracking</li>
+    <li>R4: Generating progress reports and insights over time</li>
+    <li>R5: Social features like comments, likes, and sharing achievements</li>
+    <li>R6: User registration and onboarding through various methods</li>
+    <li>R7: Personalized goal setting based on user metrics</li>
+    <li>R8: Workout library with exercises and routines</li>
+    <li>R9: Custom workout creation and saving capabilities</li>
+    <li>R10: Meal planning features for dietary goals</li>
+    <li>R11: Tracking and visualizing user progress</li>
+    <li>R12: Push notifications for reminders and motivation</li>
+    <li>R13: Integration with wearable devices</li>
+    <li>R14: Challenge participation and tracking</li>
+    <li>R15: Admin dashboard for monitoring engagement</li>
+</ul>
+
+<h3>Non-Functional Requirements</h3>
+<ul>
+    <li>N1: The system must support 1,000+ concurrent users without performance degradation.</li>
+    <li>N2: All user data must be encrypted to ensure privacy and security.</li>
+    <li>N3: The system must be highly responsive and support mobile devices.</li>
+    <li>N4: Performance requirements must ensure data processing in less than two seconds.</li>
+    <li>N5: The system should support horizontal scaling to accommodate growth.</li>
+    <li>N6: The application should ensure 99.9% uptime.</li>
+    <li>N7: The system must integrate with third-party services.</li>
+    <li>N8: The interface must be user-friendly and accessible.</li>
+    <li>N9: Robust security measures, including two-factor authentication, must be in place.</li>
+    <li>N10: The application must adhere to GDPR and data privacy regulations.</li>
+    <li>N11: The application should function across various platforms and devices.</li>
+    <li>N12: Regular data backups and recovery protocols must be established.</li>
+    <li>N13: The system must support multiple languages for localization.</li>
+</ul>
+
+    </section>
+    <!-- Add this inside <div class="content"> for High-Level Design -->
+<section id="design">
+    <h2>High-Level System Design</h2>
+    <h3>System Architecture Overview</h3>
+<p>
+    The system architecture leverages a modular, microservices-based approach to enable flexibility, scalability, and high performance. 
+    Each major functional area—User Management, Workout Tracker, Nutrition Log, Social Features, and Analytics Engine—is developed as an independent, 
+    self-contained microservice that interacts with others through well-defined APIs. This design choice offers significant benefits in terms of both scalability and maintainability, 
+    allowing each module to be deployed, scaled, and updated independently without affecting other parts of the system. 
+    For instance, if there is an increase in demand for analytics processing or workout logging, these modules can be scaled up independently to meet user demand, 
+    preserving system responsiveness without requiring the entire architecture to be scaled.
+</p>
+<p>
+    The <b>User Management service</b>, a critical foundation of the system, handles secure user registration, authentication, and profile management. 
+    It uses strong encryption for storing user credentials and sensitive data, ensuring that user privacy and data integrity are maintained. 
+    It also acts as a gateway for user preferences and personal details, allowing the Workout Tracker and Nutrition Log services to access essential user data needed to personalize recommendations and insights.
+</p>
+<p>
+    The <b>Workout Tracker module</b> is designed to handle high volumes of data, logging details for each workout session, including exercise type, duration, intensity, and other metrics. 
+    This microservice is optimized to handle frequent data reads and writes, ensuring a smooth user experience even with large datasets. 
+    Additionally, it allows users to retrieve historical data to track progress over time, and the modular setup enables this service to be enhanced with new types of workouts or tracking capabilities 
+    without requiring extensive changes to other parts of the system.
+</p>
+<p>
+    The <b>Nutrition Log service</b> functions as an independent microservice dedicated to dietary tracking and caloric analysis. 
+    This service integrates with a database of food items and nutritional data, allowing users to log meals and calculate daily intake. 
+    Since nutritional data may require frequent updates as users log meals multiple times a day, this service is designed with high efficiency in data processing. 
+    Furthermore, by isolating the Nutrition Log as its own microservice, the system is capable of incorporating additional dietary features, such as recipe recommendations or allergen alerts, 
+    without requiring changes to the other modules.
+</p>
+<p>
+    The <b>Social Features</b> microservice enables users to connect with each other, share workout achievements, and participate in challenges. 
+    This service uses a modular database optimized for user interactions and social engagement, supporting features like posting, commenting, and tracking friend activities. 
+    By isolating these features in their own microservice, the system ensures that high engagement in social interactions doesn’t impact the performance of other services, 
+    such as Workout Tracker or Nutrition Log. This approach also allows future enhancements in community-building features, such as group workouts or event-based challenges, 
+    to be easily incorporated.
+</p>
+<p>
+    The <b>Analytics Engine</b> is a central feature designed to process large volumes of data generated from user activities, workouts, and nutrition logs. 
+    It aggregates, analyzes, and generates insights in near real-time, supporting users in tracking their progress through visualizations and data-driven feedback. 
+    This service is also isolated as a microservice, enabling resource-intensive analytics computations to be handled on separate servers without affecting the user-facing application’s performance. 
+    It is designed to scale horizontally, making it possible to add computing resources specifically for the Analytics Engine as more users join the platform.
+</p>
+<p>
+    This microservices-based architecture is built to support asynchronous communication between services, often facilitated by message brokers to manage data exchanges in real-time. 
+    Such an architecture allows for fault tolerance and high availability, as each service is resilient to the failures of others. 
+    This design not only maintains system stability under high load conditions but also simplifies system maintenance and updates, enabling the continuous delivery of new features and optimizations 
+    without disrupting user experience. Overall, the modular microservices architecture is designed to ensure a high-performing, scalable, and flexible system that grows with user demand while maintaining 
+    efficient and reliable functionality across all fitness-tracking services.
+</p>
+
+    <h4>System Architecture Diagram</h4>
+    <p>Below is a simple diagram showing how the key components interact.</p>
+    <img src = "System HLD.png" alt="System Architecture" width="800" height="500" style="display: block; margin: auto;">
+    <h2>Modules and Components</h2>
+    <h3>Module 1 - User Profile Management</h3>
+<h4>Functionality</h4>
+<p>
+    The User Profile Management module provides users with a centralized hub to manage their personal information, fitness goals, and preferences. 
+    Users can create a personalized profile upon registration, including details like their fitness objectives (e.g., weight loss, muscle gain), 
+    dietary restrictions, and preferred activities. The module supports secure login, registration, and profile editing, giving users control 
+    over their personal data and goals.
+</p>
+
+<h4>Design Element - DE-1: Profile Authentication and Security</h4>
+<p>
+    This design element focuses on implementing secure authentication protocols and data encryption, ensuring user privacy and account protection.
+</p>
+
+<h4>Design Element - DE-2: Goal Customization and Data Input</h4>
+<p>
+    With customizable goal settings, users can easily define and adjust their fitness and dietary targets, creating a tailored fitness journey.
+</p>
+
+<h3>Module 2 - Workout Management</h3>
+<h4>Functionality</h4>
+<p>
+    This module allows users to log their workouts, either by choosing from a library of predefined exercises or creating custom routines. 
+    Users can specify details like exercise type, duration, and intensity level. The module keeps a record of all logged workouts, enabling users 
+    to view historical data and track improvements over time.
+</p>
+
+<h4>Design Element - DE-3: Exercise Library and Custom Plans</h4>
+<p>
+    Provides a database of various exercises to help users choose workouts that suit their goals, as well as an option to customize and save 
+    individual workout routines.
+</p>
+
+<h4>Design Element - DE-4: Workout Data Visualization</h4>
+<p>
+    Ensures users receive visual feedback on their workout history and progress, with charts displaying metrics like calories burned and exercise 
+    duration over time.
+</p>
+
+<h3>Module 3 - Nutrition Tracking</h3>
+<h4>Functionality</h4>
+<p>
+    The Nutrition Tracking module enables users to log daily meals, tracking calories and macronutrients. With access to a comprehensive food database, 
+    users can search for specific items or manually input custom meals. The module aggregates nutrition data, providing users insights into their diet 
+    patterns and helping them make informed decisions to align with their fitness goals.
+</p>
+
+<h4>Design Element - DE-5: Food Database and Meal Logging</h4>
+<p>
+    Supports extensive food lookup and meal logging, allowing users to easily input nutrition details for precise tracking.
+</p>
+
+<h4>Design Element - DE-6: Nutritional Insights and Goal Adjustment</h4>
+<p>
+    Offers personalized insights based on logged data, enabling users to adjust diet choices to achieve their goals, such as weight loss or muscle gain.
+</p>
+
+<h3>Module 4 - Progress Tracking and Analytics</h3>
+<h4>Functionality</h4>
+<p>
+    This module generates comprehensive progress insights by analyzing data from the workout and nutrition modules. It presents visual dashboards with 
+    graphs and trends, allowing users to monitor their fitness journey. This data-driven approach helps users stay motivated and make informed adjustments 
+    to their routines based on performance.
+</p>
+
+<h4>Design Element - DE-7: Analytics Dashboard</h4>
+<p>
+    Displays progress through detailed visuals, providing users with a clear understanding of their achievements and areas for improvement.
+</p>
+
+<h4>Design Element - DE-8: Goal-Setting Feedback Loop</h4>
+<p>
+    Based on logged data, users receive tailored feedback to fine-tune their goals, fostering continuous improvement and motivation.
+</p>
+
+<h3>Module 5 - Community and Social Features</h3>
+<h4>Functionality</h4>
+<p>
+    The Community and Social Features module fosters a sense of community among users. Through this module, users can connect with friends or workout partners, 
+    share achievements, and participate in challenges. These social interactions encourage users to stay engaged and motivated in achieving their fitness goals.
+</p>
+
+<h4>Design Element - DE-9: Social Interaction Features</h4>
+<p>
+    Allows users to post achievements, comment on others’ progress, and engage with a community for support and encouragement.
+</p>
+
+<h4>Design Element - DE-10: Group Challenges and Events</h4>
+<p>
+    Encourages community engagement by hosting challenges and events where users can participate together, fostering a supportive and competitive environment.
+</p>
+
+    <img src="Class diagram.jpeg" alt="System Architecture" width="700" height="500" style="display: block; margin: auto;">
+    <h3>Sequence Diagram</h3>
+    <ul>
+        <li><strong>Registration Flow:</strong> In the registration sequence, the user initiates by entering their details into the application, which processes and securely stores this information in the database. Once the registration data is successfully saved, the database sends a confirmation response back to the application. The application then notifies the user that their registration was successful, ensuring a seamless onboarding experience.</li>
+        <li><strong>Workout Logging Flow:</strong> The workout logging sequence allows users to record workout details, such as exercise type, duration, and intensity. Once the user submits this information, the application sends the data to the database, where it is securely stored for tracking and analytics. Upon confirmation of successful storage, the system notifies the user that their workout has been logged, helping them keep track of their fitness journey easily and reliably.</li>
+    </ul>
+    <img src="Sequence diagram.png" alt="System Architecture" width="700" height="500" style="display: block; margin: auto;">
+    <h3>Interaction Between Components</h3>
+    <p>Each module communicates with others through an API Gateway, ensuring smooth data flow between services. For example, when a user logs a workout, the data is processed by the Analytics Engine, and updates are reflected in both the user’s dashboard and their social feed if they choose to share their progress.</p>
+
+    
+    <h3>Traceability Matrix</h3>
+    <table>
+        <tr>
+            <th>Requirements</th>
+            <th>Requirement ID</th>
+            <th>Design ID</th>
+        </tr>
+        <!-- Functional Requirements -->
+        <tr>
+            <td>FR-1: User Authentication and Profile Management</td>
+            <td>FR-1</td>
+            <td>DE-1, DE-2, DE-3</td>
+        </tr>
+        <tr>
+            <td>FR-2: Logging Workouts (exercise type, duration, intensity)</td>
+            <td>FR-2</td>
+            <td>DE-2</td>
+        </tr>
+        <tr>
+            <td>FR-3: Logging Nutrition Data (meals, calories, macronutrients)</td>
+            <td>FR-3</td>
+            <td>DE-1, DE-2</td>
+        </tr>
+        <tr>
+            <td>FR-4: View Progress Reports (workout and nutrition) Over Time</td>
+            <td>FR-4</td>
+            <td>DE-2</td>
+        </tr>
+        <tr>
+            <td>FR-5: Set Fitness Goals and Track Achievement</td>
+            <td>FR-5</td>
+            <td>DE-1</td>
+        </tr>
+        <tr>
+            <td>FR-6: Community Interaction (likes, comments, posts)</td>
+            <td>FR-6</td>
+            <td>DE-1</td>
+        </tr>
+        <tr>
+            <td>FR-7: Data Encryption for Sensitive User Information</td>
+            <td>FR-7</td>
+            <td>DE-3</td>
+        </tr>
+        <tr>
+            <td>FR-8: Support for 1,000+ Concurrent Users</td>
+            <td>FR-8</td>
+            <td>DE-2</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="border-top: 2px solid black;"></td>
+        </tr>
+        <!-- Non-Functional Requirements -->
+        <tr>
+            <td>NFR-1: System Must be Highly Responsive</td>
+            <td>NFR-1</td>
+            <td>DE-1</td>
+        </tr>
+        <tr>
+            <td>NFR-2: Secure Storage for User Data</td>
+            <td>NFR-2</td>
+            <td>DE-1, DE-3</td>
+        </tr>
+        <tr>
+            <td>NFR-3: Real-Time Analytics and Data Processing</td>
+            <td>NFR-3</td>
+            <td>DE-3</td>
+        </tr>
+        <tr>
+            <td>NFR-4: Mobile-Friendly Interface</td>
+            <td>NFR-4</td>
+            <td>DE-2</td>
+        </tr>
+        <tr>
+            <td>NFR-5: Scalability for Growing User Base</td>
+            <td>NFR-5</td>
+            <td>DE-1, DE-3</td>
+        </tr>
+        <tr>
+            <td>NFR-6: High Performance under Concurrent Usage</td>
+            <td>NFR-6</td>
+            <td>DE-1, DE-2, DE-3</td>
+        </tr>
+        <tr>
+            <td>NFR-7: Data Privacy and Security Regulations</td>
+            <td>NFR-7</td>
+            <td>DE-1, DE-2, DE-3</td>
+        </tr>
+        <tr>
+            <td>NFR-8: Ability to Integrate with Third-Party APIs</td>
+            <td>NFR-8</td>
+            <td>DE-1, DE-2, DE-3</td>
+        </tr>
+        <tr>
+            <td>NFR-9: Simple and Intuitive User Interface</td>
+            <td>NFR-9</td>
+            <td>DE-1</td>
+        </tr>
+    </table>
+</section>
+<section id="rationale">
+    <h2 class="section-title">Design Rationale</h2>
+    <p>The Health and Fitness Tracking Application is built with a modular, scalable, and user-centric architecture to streamline fitness tracking, nutrition logging, and community engagement. The core goal of the application is to simplify fitness management by automating user activity logging, progress monitoring, and social interaction, reducing the effort and time users would spend tracking these elements manually. The system is designed to have three main components: <strong>Front-End</strong>, <strong>Back-End</strong>, and <strong>Database</strong>.</p>
+    
+    <p>The <strong>Front-End</strong> is responsible for handling all user interactions, displaying information through a responsive and intuitive user interface. It covers key features such as logging workouts, viewing progress charts, tracking nutrition intake, and engaging with the social platform. The <strong>Back-End</strong> processes and handles all the logic and business rules, ensuring that user requests are accurately managed and computed. The <strong>Database</strong> stores all relevant data, including user profiles, workout logs, nutritional information, and social interactions.</p>
+    
+    <p>To implement this system efficiently, the <strong>Model-View-Controller (MVC)</strong> architecture has been chosen. The Model represents the database interactions, such as storing and retrieving user workout and nutrition logs. The View represents the front-end or UI components, which display this data in a user-friendly format. The Controller handles all business logic, processing user inputs, interacting with the database, and generating appropriate outputs.</p>
+    
+    <p>Functional requirements include:</p>
+    <p><strong>FR1 (User Authentication and Profile Management)</strong> and <strong>FR2 (Workout Logging)</strong>, involving the database and backend logic, where user credentials and workout details are verified, stored, and retrieved. <strong>FR3 (Nutrition Tracking)</strong> and <strong>FR4 (Progress Insights)</strong> involve both back-end logic and database interactions, where nutritional data is logged and used for generating reports. <strong>FR5 (Social Features)</strong> covers interactions between users within the community and requires real-time updates in the UI, handled through the front-end views.</p>
+    
+    <p>For non-functional requirements:</p>
+    <p><strong>NFR1 (Responsiveness)</strong> and <strong>NFR3 (Mobile Compatibility)</strong> ensure the front-end provides a seamless user experience across devices. <strong>NFR2 (Data Encryption)</strong> ensures that all sensitive user data (such as health information) is securely stored and transmitted, primarily handled by the back-end logic in conjunction with database encryption techniques.</p>
+    
+    <p>The MVC architecture allows for a clear separation of concerns and enhances the flexibility of the system to handle future enhancements, such as integrating third-party fitness APIs, expanding the nutrition database, or adding advanced analytics. This approach ensures the application is scalable, maintainable, and capable of providing users with real-time feedback and insights based on their health data.</p>
+</section>
+
+<section id="conclusion">
+    <h2 class="section-title">Conclusion</h2>
+    <p>The Health and Fitness Tracking Application is a comprehensive solution for users who wish to monitor their fitness journey, track workouts, log nutrition intake, and engage with a community. The system's modular design, leveraging the MVC architecture, ensures that the application is scalable, maintainable, and can easily integrate future enhancements.</p>
+    <p>By automating processes like workout tracking, nutrition logging, and progress monitoring, the application significantly reduces the manual effort required by users. It fosters a supportive environment through social features and enables users to stay motivated as they progress towards their fitness goals.</p>
+    <p>Overall, the application is designed to cater to the evolving needs of the fitness community, providing a reliable and user-friendly platform that encourages long-term fitness success.</p>
+</section>
+
+</div>
+
+
+</body>
+</html>
